@@ -167,32 +167,9 @@ add_firewall_port(){
 
 
 install_ssl_Cert() {
-	git clone https://github.com/certbot/certbot.git /opt/letsencrypt > /dev/null 2>&1
-
-	cd /opt/letsencrypt
-	letsencryptdomains=()
-	end="false"
-	i=0
-	
-	while [ "$end" != "true" ]
-	do
-		read -p "Enter your server's domain or done to exit: " -r domain
-		if [ "$domain" != "done" ]
-		then
-			letsencryptdomains[$i]=$domain
-		else
-			end="true"
-		fi
-		((i++))
-	done
-	command="./certbot-auto certonly --standalone "
-	for i in "${letsencryptdomains[@]}";
-		do
-			command="$command -d $i"
-		done
-	command="$command -n --register-unsafely-without-email --agree-tos"
-	
-	eval $command
+	sudo apt install certbot
+	sudo certbot certonly --standalone
+	echo "Cert installed"
 
 }
 
