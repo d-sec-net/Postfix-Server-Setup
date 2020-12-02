@@ -268,7 +268,7 @@ install_postfix_dovecot() {
 
 	cat <<-EOF > /etc/opendmarc.conf
 	AuthservID ${primary_domain}
-	PidFile /var/run/opendmarc.pid
+	PidFile /var/run/opendmarc/opendmarc.pid
 	RejectFailures false
 	Syslog true
 	TrustedAuthservIDs ${primary_domain}
@@ -278,6 +278,8 @@ install_postfix_dovecot() {
 	IgnoreHosts /etc/opendmarc/ignore.hosts
 	HistoryFile /var/run/opendmarc/opendmarc.dat
 	EOF
+	
+	chown -R opendmarc:opendmarc /var/run/opendmarc/
 
 	mkdir "/etc/opendmarc/"
 	echo "localhost" > /etc/opendmarc/ignore.hosts
