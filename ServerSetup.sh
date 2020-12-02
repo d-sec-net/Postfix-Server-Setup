@@ -525,9 +525,9 @@ setupSSH(){
 
 function Install_GoPhish {
 	apt-get install unzip > /dev/null 2>&1
-	wget https://github.com/gophish/gophish/releases/download/v0.4.0/gophish-v0.4-linux-64bit.zip
-	unzip gophish-v0.4-linux-64bit.zip
-	cd gophish-v0.4-linux-64bit
+	wget https://github.com/gophish/gophish/releases/download/v0.11.0/gophish-v0.11.0-linux-64bit.zip
+	unzip gophish-v0.11.0-linux-64bit.zip
+	cd gophish-v0.11.0-linux-64bit
         sed -i 's/"listen_url" : "127.0.0.1:3333"/"listen_url" : "0.0.0.0:3333"/g' config.json
 	read -r -p "Do you want to add an SSL certificate to your GoPhish? [y/N] " response
 	case "$response" in
@@ -557,9 +557,9 @@ function Install_GoPhish {
 
 function Install_IRedMail {
 	echo "Downloading iRedMail"
-	wget https://bitbucket.org/zhb/iredmail/downloads/iRedMail-0.9.6.tar.bz2
-	tar -xvf iRedMail-0.9.6.tar.bz2
-	cd iRedMail-0.9.6/
+	wget https://github.com/iredmail/iRedMail/archive/1.3.2.tar.gz
+	tar -xvf 1.3.2.tar.gz
+	cd iRedMail-1.3.2/
 	chmod +x iRedMail.sh
 	echo "Running iRedMail Installer"
 	./iRedMail.sh
